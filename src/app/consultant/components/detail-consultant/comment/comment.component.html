@@ -1,0 +1,13 @@
+<div class="container">
+  <blockquote class="quote-card">
+    <h1>
+      {{comment?.subject}}
+    </h1>
+    <p>
+      {{comment?.body}}
+    </p>
+    <cite>
+      {{comment?.created | date}} - {{comment?.user}}, {{comment?.status | statusComment}}, {{comment?.rating}} <i class="material-icons">start_rate</i>
+    </cite>
+  </blockquote>
+</div>

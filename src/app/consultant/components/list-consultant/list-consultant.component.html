@@ -1,0 +1,61 @@
+<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav disableClose="true" #sidenav mode="over" position="end">
+    <app-view-consultant>
+    </app-view-consultant>
+  </mat-sidenav>
+  <div class="content">
+    <mat-form-field>
+      <input #searchInput matInput (keyup)="changeValue($event)"
+        placeholder="Filter"/>
+        <mat-hint align="start">write three characters minimum to filter</mat-hint>
+    </mat-form-field>
+
+    <div class="results"><h3 *ngIf="filter" >Results for the filter: {{filter}}</h3></div>
+
+    <div class="loading-shade" *ngIf="showProgress">
+      <mat-progress-spinner mode="indeterminate" ></mat-progress-spinner>
+    </div>
+
+    <mat-table #table [dataSource]="datasource" matSort
+      matSortActive="short_name" matSortDisableClear matSortDirection="asc">
+
+      <!-- Short name Column -->
+      <ng-container matColumnDef="short_name" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true"> Short name </mat-header-cell>
+        <mat-cell *matCellDef="let consultant"> {{consultant.short_name}} </mat-cell>
+      </ng-container>
+
+      <!-- Full Name Column -->
+      <ng-container matColumnDef="full_name">
+        <mat-header-cell *matHeaderCellDef> Full Name </mat-header-cell>
+        <mat-cell *matCellDef="let consultant"> {{consultant.full_name}} </mat-cell>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true"> Status </mat-header-cell>
+        <mat-cell *matCellDef="let consultant"> {{consultant.status | statusConsultant}} </mat-cell>
+      </ng-container>
+
+      <!-- Gender Column -->
+      <ng-container matColumnDef="gender">
+          <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true"> Gender </mat-header-cell>
+          <mat-cell *matCellDef="let consultant"> {{consultant.gender | genderConsultant}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="viewDetail">
+            <mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true"></mat-header-cell>
+          <mat-cell *matCellDef="let consultant">
+            <button mat-mini-fab color="primary" (click)="openCard(consultant)"
+            matTooltip="View card">
+              <i class="material-icons">&#xE8F4;</i></button> </mat-cell>
+        </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</mat-sidenav-container>
+
+

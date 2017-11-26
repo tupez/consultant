@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+        <mat-card-title>{{consultant?.short_name}}</mat-card-title>
+        <mat-card-subtitle>{{consultant?.full_name}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{consultant?.profile_picture}}">
+  <mat-card-content>
+      <p>
+         {{consultant?.short_me}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button  color="primary" matTooltip="Detail" (click)="viewConsultant(consultant?.id)">DETAIL</button>
+      <button mat-raised-button  matTooltip="Close" (click)="close()">CLOSE</button>
+    </mat-card-actions>
+</mat-card>

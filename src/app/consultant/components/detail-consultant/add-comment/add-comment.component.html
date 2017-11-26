@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    <span>Add comment</span>
+</mat-toolbar>
+<form>
+  <mat-form-field class="full-width">
+    <input type="text" maxlength="100" name="subject" matInput placeholder="Subject" [(ngModel)]="comment.subject" required >
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <textarea name="body" matInput placeholder="Body" [(ngModel)]="comment.body"></textarea>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-select name="status" placeholder="Status" [(ngModel)]="comment.status">
+      <mat-option value="N">No validated</mat-option>
+      <mat-option value="V">Verified</mat-option>
+      <mat-option value="D">Discarted</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input type="number" max="2147483647" min="-2147483648" matInput name="rating"  placeholder="Rating" required [(ngModel)]="comment.rating">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+      <input type="text" maxlength="100" name="user" matInput placeholder="User" required [(ngModel)]="comment.user">
+  </mat-form-field>
+  <div class="buttons-right">
+    <button type="button" mat-raised-button (click)="closeDialog()" matTooltip="Close">CLOSE</button>
+    <button type="button" mat-raised-button (click)="addComment()" color="primary" matTooltip="Add">ADD</button>
+  </div>
+</form>

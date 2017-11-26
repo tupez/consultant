@@ -1,0 +1,93 @@
+<router-outlet></router-outlet>
+<div class="loading-shade" *ngIf="showProgress">
+  <mat-progress-spinner mode="indeterminate" ></mat-progress-spinner>
+</div>
+<div class="card" *ngIf="consultant">
+    <div class="container-data container-data-first">
+  <img mat-card-image src="{{consultant?.profile_picture}}">
+  <div class="container-data-intern">
+    <div class="field-small">
+      <div class="label">
+        Short Name
+      </div>
+      <div class="value">
+        {{consultant?.short_name}}
+      </div>
+    </div>
+    <div class="field-small">
+      <div class="label">
+        Full Name
+      </div>
+      <div class="value">
+        {{consultant?.full_name}}
+      </div>
+    </div>
+    <div class="field-small">
+      <div class="label">
+        Email
+      </div>
+      <div class="value">
+        {{consultant?.email}}
+      </div>
+    </div>
+    <div class="field-small">
+      <div class="label">
+        Date joined
+      </div>
+      <div class="value">
+        {{consultant?.date_joined | date }}
+      </div>
+    </div>
+    <div class="field-min">
+      <div class="label">
+        Status
+      </div>
+      <div class="value">
+        {{consultant?.status | statusConsultant}}
+      </div>
+    </div>
+    <div class="field-min">
+      <div class="label">
+        Gender
+      </div>
+      <div class="value">
+        {{consultant?.gender | genderConsultant }}
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="container-data container-data-last">
+    <div class="field-large">
+      <div class="label">
+        Short me
+      </div>
+      <div class="value">
+        {{consultant?.short_me }}
+      </div>
+    </div>
+    <div class="field-medium">
+      <div class="label">
+        Location
+      </div>
+      <div class="value">
+        {{consultant?.location }}
+      </div>
+    </div>
+    <div class="buttons">
+      <div class="buttons-right">
+        <button mat-raised-button matTooltip="Go Consultants" (click)="gotoListConsultants()">GO CONSULTANTS</button>
+        <button mat-raised-button color="primary" (click)="addComment()" matTooltip="Add">ADD COMMENT</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="comments" *ngIf="consultant">
+        <app-comment [comment]="comment" *ngFor="let comment of consultant?.comments">
+        </app-comment>
+      <div class="buttons-right">
+        <button mat-raised-button matTooltip="Go Consultants" (click)="gotoListConsultants()">GO CONSULTANTS</button>
+        <button mat-raised-button color="primary" (click)="addComment()" matTooltip="Add">ADD COMMENT</button>
+      </div>
+</div>
+
