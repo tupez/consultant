@@ -1,3 +1,4 @@
+<app-snack-bar></app-snack-bar>
 <mat-toolbar color="primary">
     <span>Add comment</span>
 </mat-toolbar>
@@ -6,7 +7,7 @@
     <input type="text" maxlength="100" name="subject" matInput placeholder="Subject" [(ngModel)]="comment.subject" required >
   </mat-form-field>
   <mat-form-field class="full-width">
-    <textarea name="body" matInput placeholder="Body" [(ngModel)]="comment.body"></textarea>
+    <textarea name="body" required matInput placeholder="Body" [(ngModel)]="comment.body"></textarea>
   </mat-form-field>
   <mat-form-field class="full-width">
     <mat-select name="status" placeholder="Status" [(ngModel)]="comment.status">

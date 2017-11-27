@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Component, OnInit, Input, Inject, ViewChild } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
 import { Comment } from '../../../beans/comment';
 import { CommentService } from '../../../services/comment.service';
+import { SnackBarComponent } from '../../../../components/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-add-comment',
@@ -13,7 +14,10 @@ export class AddCommentComponent implements OnInit {
   @Input()
   idConsultant: number;
 
+  @ViewChild(SnackBarComponent) snackBarComponent: SnackBarComponent;
+
   comment = new Comment();
+
 
   constructor(
     public dialogRef: MatDialogRef<AddCommentComponent>,
@@ -31,8 +35,9 @@ export class AddCommentComponent implements OnInit {
   addComment() {
     this.commentService.addComment(this.comment).subscribe((data) => {
       this.dialogRef.close();
+      this.snackBarComponent.open({'success': 'added comment'}, 'info');
     }, (error) => {
-      alert(error);
+      this.snackBarComponent.open(error.error, 'error');
     });
   }
 

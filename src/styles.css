@@ -16,3 +16,11 @@
 .buttons-right {
   text-align: right;
 }
+
+.mat-snack-bar-container.error {
+  background: #D81C1C;
+}
+
+.mat-snack-bar-container.info {
+  background: green;
+}

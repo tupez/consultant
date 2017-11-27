@@ -4,6 +4,7 @@ import { Consultant } from '../../beans/consultant';
 import { MatTableDataSource, MatSort, MatSidenav, MatInput } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { ViewConsultantComponent } from './view-consultant/view-consultant.component';
+import { SnackBarComponent } from '../../../components/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-list-consultant',
@@ -24,6 +25,7 @@ export class ListConsultantComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSidenav) sideNav: MatSidenav;
   @ViewChild(ViewConsultantComponent) viewConsultant: ViewConsultantComponent;
   @ViewChild(MatInput) searchInput: MatInput;
+  @ViewChild(SnackBarComponent) snackBarComponent: SnackBarComponent;
 
   constructor(private consultantService: ConsultantService) { }
 
@@ -42,8 +44,9 @@ export class ListConsultantComponent implements OnInit, AfterViewInit {
     subscribe((data) => {
       this.showProgress = false;
       this.datasource.data = data;
+      this.snackBarComponent.open({'number of results: ': data.length}, 'info');
     }, (error) => {
-      alert('error');
+      this.snackBarComponent.open({'error': 'Inexpected error'}, 'error');
     });
   }
 

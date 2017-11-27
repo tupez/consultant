@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { StatusConsultantPipe } from '../pipes/status-consultant.pipe';
 import { GenderConsultantPipe } from '../pipes/gender-consultant.pipe';
 import { PipesModule } from '../pipes/pipes.module';
+import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
+import { MessagesComponent } from '../components//snack-bar/messages/messages.component';
 
 
 @NgModule({
@@ -29,14 +31,17 @@ import { PipesModule } from '../pipes/pipes.module';
     ViewConsultantComponent,
     DetailConsultantComponent,
     CommentComponent,
-    AddCommentComponent
+    AddCommentComponent,
+    MessagesComponent,
+    SnackBarComponent
   ],
   providers: [
     ConsultantService,
     CommentService
   ],
   entryComponents: [
-    AddCommentComponent
+    AddCommentComponent,
+    MessagesComponent
   ]
 })
 export class ConsultantModule { }
