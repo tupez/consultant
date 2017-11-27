@@ -7,7 +7,7 @@
   </mat-sidenav>
   <div class="content">
     <mat-form-field>
-      <input #searchInput matInput (keyup)="changeValue($event)"
+      <input #searchInput matInput (keyup)="changeValue($event)" name="filter_search"
         placeholder="Filter"/>
         <mat-hint align="start">write three characters minimum to filter</mat-hint>
     </mat-form-field>

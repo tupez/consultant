@@ -42,7 +42,9 @@ export class DetailConsultantComponent implements OnInit {
       data: { id: this.consultant.id}
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.getConsultant();
+      if (result.result === 'add') {
+        this.getConsultant();
+      }
     });
   }
 

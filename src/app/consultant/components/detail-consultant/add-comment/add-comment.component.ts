@@ -29,12 +29,12 @@ export class AddCommentComponent implements OnInit {
   }
 
   closeDialog() {
-    this.dialogRef.close();
+    this.dialogRef.close({result: 'close'});
   }
 
   addComment() {
     this.commentService.addComment(this.comment).subscribe((data) => {
-      this.dialogRef.close();
+      this.dialogRef.close({result: 'add'});
       this.snackBarComponent.open({'success': 'added comment'}, 'info');
     }, (error) => {
       this.snackBarComponent.open(error.error, 'error');
